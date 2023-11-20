@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+    {% if params.css %}
+    <link rel="stylesheet" href="/static/css/{{params.css}}">
+    {% endif %}
+    <title>Python FullStack - {{ params.title }}</title>
+
+</head>
+
+<body>
+
+    <header>
+        <h1>Python FullStack</h1>
+    </header>
+
+    <nav>
+        <a href="/">Início</a>
+        <a href="/contatos">Contatos</a>
+        <a href="/sobre">Sobre</a>
+    </nav>
+
+    <div id="conteudo">
+        {# Aqui será exibido o conteúdo HTML da página. #}
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer>
+        <!-- Seu rodapé aqui -->
+        <p>© 2023 Eu Mesmo!<br><small>Todos os direitos reservados.</small></p>
+    </footer>
+
+    {% if params.js %}
+    <script src="/static/js/{{ params.js }}"></script>
+    {% endif %}
+
+</body>
+
+</html>
