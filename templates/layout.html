@@ -1,3 +1,31 @@
+{#
+Este é o arquivo HTML tema do site. Todas as páginas usarão ele como
+referência. Para que isso seja funcional, todos os templates devem ter a
+seguinte estrutura mínima:
+
+```
+{% extends 'layout.html' %}
+{% block content %}
+
+<p>Conteúdo HTML da página...</p>
+
+{% endblock %}
+```
+
+Além disso, o controller deve criar `params` antes de renderizar o template, no
+seguinte formato mínimo:
+
+```
+params = {
+"title": "Título da Página Tal", # Obrigatório → Título da página usado na tag <title></title>.
+"css": "paginatal.css", # Opcional → Referência da folha de estilos que deve existir em `/static/css`.
+"js": "contacts.js" # Opcional → Referência do JavaScript que deve existir em `/static/js`.
+}
+```
+
+Outros parâmetros podem ser adicionados a `params` no controller, para serem 
+repassados para o template em questão.
+#}
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -5,35 +33,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="icon" href="/static/img/favicon.png">
+
+    {# Processa a folha de estilos da página, caso exista referência a ele no controller. #}
     {% if params.css %}
     <link rel="stylesheet" href="/static/css/{{params.css}}">
     {% endif %}
-    <title>Python FullStack - {{ params.title }}</title>
 
+    {# Exibe o título da página conforme passado pelo controller. #}
+    <title>Python FullStack - {{ params.title }}</title>
 </head>
 
 <body>
 
-    <header>
-        <h1>Python FullStack</h1>
-    </header>
+    <div id="wrap">
 
-    <nav>
-        <a href="/">Início</a>
-        <a href="/contatos">Contatos</a>
-        <a href="/sobre">Sobre</a>
-    </nav>
+        <header>
+            <a href="/"><img src="/static/img/favicon.png" alt="Logotipo de Python FullStack"></a>
+            <h1>Python FullStack</h1>
+        </header>
 
-    <div id="conteudo">
-        {# Aqui será exibido o conteúdo HTML da página. #}
-        {% block content %}{% endblock %}
+        <nav>
+            <a href="/">Início</a>
+            <a href="/contatos">Contatos</a>
+            <a href="/sobre">Sobre</a>
+        </nav>
+
+        <main>
+            {# Aqui será exibido o conteúdo HTML da página. #}
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer>
+            © 2023 Eu Mesmo!<small><a href="/privacidade">Políticas de Privacidade</small>
+        </footer>
+
     </div>
 
-    <footer>
-        <!-- Seu rodapé aqui -->
-        <p>© 2023 Eu Mesmo!<br><small>Todos os direitos reservados.</small></p>
-    </footer>
-
+    {# Processa o JavaScript da página, caso exista referência a ele no controller. #}
     {% if params.js %}
     <script src="/static/js/{{ params.js }}"></script>
     {% endif %}

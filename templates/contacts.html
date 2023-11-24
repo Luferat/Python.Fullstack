@@ -1,39 +1,58 @@
 {% extends 'layout.html' %}
-
 {% block content %}
-<h2>Faça Contato</h2>
 
-{% if params.status == 'success' %}
-<div class="success">{{ params.message | safe }}</div>
-{% elif params.status == 'fail' %}
-<div class="fail">{{ params.message | safe }}</div>
-{% else %}
-<form method="post" action="{{ request.path }}">
-    <p>Preencha os campos abaixo para entrar em contato conosco:</p>
-    <p>
-        <label for="name">Nome:</label>
-        <input type="text" name="name" id="name">
-    </p>
+<article>
 
-    <p>
-        <label for="email">E-mail:</label>
-        <input type="email" name="email" id="email">
-    </p>
+    <h2>Faça Contato</h2>
 
-    <p>
-        <label for="subject">Assunto:</label>
-        <input type="text" name="subject" id="subject">
-    </p>
+    {% if params.status == 'success' %}
 
-    <p>
-        <label for="message">Mensagem:</label>
-        <textarea name="message" id="message"></textarea>
-    </p>
+    {#
+    `safe` permite que textos passados pelo controller sejam interpretados como
+    HTML pelo navegador.
+    #}
+    <div class="success">{{ params.message | safe }}</div>
 
-    <p>
-        <button type="submit">Enviar</button>
-    </p>
-</form>
+    {% elif params.status == 'fail' %}
+
+    <div class="fail">{{ params.message | safe }}</div>
+
+    {% else %}
+
+    {#
+    `request.path` é a rota desta mesma página, ou seja, o formulário abaixo será
+    enviado para a mesma rota em que ele é exibido, porém, agora, usando o método
+    HTTP POST.
+    #}
+    <form method="post" action="{{ request.path }}">
+        <p>Preencha os campos abaixo para entrar em contato conosco:</p>
+        <p>
+            <label for="name">Nome:</label>
+            <input type="text" name="name" id="name">
+        </p>
+
+        <p>
+            <label for="email">E-mail:</label>
+            <input type="email" name="email" id="email">
+        </p>
+
+        <p>
+            <label for="subject">Assunto:</label>
+            <input type="text" name="subject" id="subject">
+        </p>
+
+        <p>
+            <label for="message">Mensagem:</label>
+            <textarea name="message" id="message"></textarea>
+        </p>
+
+        <p>
+            <button type="submit">Enviar</button>
+        </p>
+    </form>
+
+</article>
+
 {% endif%}
 
 {% endblock %}

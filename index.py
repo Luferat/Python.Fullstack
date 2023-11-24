@@ -21,25 +21,29 @@ def contacts():
         "css": "contacts.css",
         "js": "contacts.js"
     }
+
     if request.method == 'POST':
         form_data = dict(request.form)
         print(form_data)
 
-        # Exemplo de feedback em caso de sucesso.
-        params['status'] = 'success'
-        params['message'] = f'''
-            <h3>Olá {form_data.get('name').split()[0]}!</h3>
-            <p>Seu contato foi enviado com sucesso!<p>
-            <p><em>Obrigado...</em></p>
-        '''
+        success = True
 
-        # Exemplo de feedback em caso de falha.
-        params['status'] = 'fail'
-        params['message'] = f'''
-            <h3>Oooops!</h3>
-            <p>Ocorreu uma falha ao salvar seu contato! Por favor, tente mais tarde.</p>
-            <p><em>Obrigado...</em></p>
-        '''
+        if (success):
+            # Exemplo de feedback em caso de sucesso.
+            params['status'] = 'success'
+            params['message'] = f'''
+                <h3>Olá {form_data.get('name').split()[0]}!</h3>
+                <p>Seu contato foi enviado com sucesso!<p>
+                <p><em>Obrigado...</em></p>
+            '''
+        else:
+            # Exemplo de feedback em caso de falha.
+            params['status'] = 'fail'
+            params['message'] = f'''
+                <h3>Oooops!</h3>
+                <p>Ocorreu uma falha ao salvar seu contato! Por favor, tente mais tarde.</p>
+                <p><em>Obrigado...</em></p>
+            '''
 
     return render_template('contacts.html', params=params)
 
@@ -53,6 +57,14 @@ def about():
     }
     return render_template('about.html', params=params)
 
+@app.route('/privacidade')
+def privacy():
+    params = {
+        "title": "Políticas de Privacidade",
+        "css": "privacy.css",
+        "js": "privacy.js"
+    }
+    return render_template('privacy.html', params=params)
 
 @app.errorhandler(404)
 def page_not_found(e):
