@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 
+
 app = Flask(__name__)
 
 
@@ -57,6 +58,7 @@ def about():
     }
     return render_template('about.html', params=params)
 
+
 @app.route('/privacidade')
 def privacy():
     params = {
@@ -65,6 +67,7 @@ def privacy():
         "js": "privacy.js"
     }
     return render_template('privacy.html', params=params)
+
 
 @app.errorhandler(404)
 def page_not_found(e):

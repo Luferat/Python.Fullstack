@@ -1,3 +1,5 @@
+/* CSS do tema, mobile-first */
+
 * {
     box-sizing: border-box;
     outline: none;
@@ -7,11 +9,17 @@ html,
 body {
     font-family: sans-serif;
     font-size: 16px;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 100%;
 }
 
 body {
-    background-image: url('/static/img/snakebg2.png');
     background-attachment: fixed;
+    background-image: url('/static/img/snakebg2.png');
+    background-position: center;
 }
 
 a {
@@ -24,23 +32,21 @@ a:hover {
 }
 
 #wrap {
-    width: 100%;
-    max-width: 768px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     margin: auto;
-    background-color: rgba(255, 255, 255, .9);
+    max-width: 1024px;
+    position: relative;
+    width: 100%;
 }
 
 header {
-    display: flex;
     align-items: center;
+    display: flex;
     justify-content: center;
-}
-
-header img {
-    height: 4rem;
-    width: auto;
-    display: block;
-    margin-right: 1rem;
+    background-color: rgba(255, 255, 255, .9);
+    padding: .25rem;
 }
 
 header h1 {
@@ -48,18 +54,25 @@ header h1 {
     text-align: center;
 }
 
+header img {
+    display: block;
+    height: 4rem;
+    margin-right: 1rem;
+    width: auto;
+}
+
 nav {
-    display: flex;
     align-items: center;
+    background-color: rgba(70, 131, 180, 0.9);
+    display: flex;
     justify-content: space-around;
-    background-color: steelblue;
     padding: 1px;
 }
 
 nav a {
-    padding: 1rem;
     color: white;
     font-weight: bold;
+    padding: 1rem;
     text-transform: uppercase;
 }
 
@@ -68,23 +81,69 @@ nav a:hover {
     color: white;
 }
 
+main {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    background-color: rgba(255, 255, 255, .9);
+}
+
 main>article,
 main>aside {
     padding: 0 1rem;
 }
 
+main>article {
+    flex-grow: 1;
+}
+
 main>aside {
+    background-color: #eee;
+    background-color: rgba(255, 166, 0, 0.3);
     border-top: 1rem solid #bbb;
 }
 
 footer {
-    background-color: black;
-    text-align: center;
+    background-color: rgba(0, 0, 0, 0.9);
     color: white;
     padding: 1rem;
+    text-align: center;
 }
 
 footer small {
     display: block;
     margin-top: .25rem;
+}
+
+/* Para telas maiores que 768 pixels */
+
+@media screen and (min-width: 768px) {
+    main {
+        flex-direction: row;
+    }
+
+    main>aside {
+        border-left: 1rem solid #bbb;
+        border-top: none;
+        max-width: 15rem;
+        min-width: 15rem;
+    }
+}
+
+/* Uso geral */
+
+/* Campos de formulário  */
+input[type=text],
+input[type=search],
+input[type=email],
+button,
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+    padding: .5rem;
+    border: none;
+}
+
+.center {
+    text-align: center;
 }
