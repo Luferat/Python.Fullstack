@@ -1,6 +1,8 @@
 # Python.Fullstack
 
-Exemplo de um site fullstack usando Python e Flask.
+Um simples site fullstack experimental em Python usando Flask.
+
+Você pode ver uma versão publicada em https://lufer.click/pysite.
 
 ## Estrutura do site
 
